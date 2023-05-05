@@ -1,19 +1,27 @@
 import abc
-from typing import List, Dict
 from abc import ABC
+from dataclasses import dataclass
 
 
+@dataclass
 class PortRequest(ABC):
-    ...
+    cmd: str
+    payload: object
 
 
+@dataclass
 class PortResponse(ABC):
-    ...
+    payload: object
+
+
+class PortResponseError(PortResponse):
+    code: int
+    msg: str = None
 
 
 class PortHandler(ABC):
     @abc.abstractmethod
-    def handle(self, cmd: str, request: PortRequest) -> PortResponse:
+    def handle(self, request: PortRequest) -> PortResponse:
         ...
 
     @abc.abstractmethod
