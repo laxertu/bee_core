@@ -2,16 +2,19 @@ import abc
 from abc import ABC
 from dataclasses import dataclass
 
+@dataclass
+class Dto:
+    ...
 
 @dataclass
 class PortRequest(ABC):
     cmd: str
-    payload: object
+    payload: Dto
 
 
 @dataclass
 class PortResponse(ABC):
-    payload: object
+    payload: Dto
 
 
 class PortResponseError(PortResponse):
